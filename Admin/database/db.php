@@ -3,7 +3,7 @@
 
 /*
  *
- *   most secure way to connect database is to create constant
+ *    create constants to connect to the db
  */
 
 $db['db_host'] = "localhost";

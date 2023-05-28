@@ -26,37 +26,22 @@
 
         <div class="col-lg-6 my-2">
             <br>
-            <div class="card spur-card" id="displaytabledata">
+            <div class="card spur-card">
 
 
                 <table class="table table-hover table-in-card">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Id</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Delete</th>
+                            <th scope="col">Update</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                    <tbody id="displaytabledata">
+
+
+
                     </tbody>
                 </table>
 
@@ -75,31 +60,73 @@
 <?php include_once "includes/footer.php"; ?>
 
 
+
 <script>
-    // add category
-    function addCategory() {
-        var categorya = $('#addcategory').val();
+// here help to display data of data and make it fix in the page 
+$(document).ready(function() {
+
+    display();
+    document.getElementById("#addcategory").reset();
+
+})
+
+// display category
+
+function display() {
+    var displaydata = "true";
+    $.ajax({
+
+        url: 'categorytabledisplay.php',
+        type: 'post',
+        data: {
+
+            displayTableInfo: displaydata
+
+        },
+        success: function(data, status) {
+            $('#displaytabledata').html(data);
+        }
 
 
-        $.ajax({
-            url: "insertcategories.php",
-            method: "POST",
-            data: {
-
-                sendCategories: categorya
-
-            },
-            success: function(data, status) {
-
-                // test button 
-                //  console.log(status);
+    });
+}
 
 
-            }
 
-        });
+// add category
+function addCategory() {
+    var categorya = $('#addcategory').val();
 
+    // using trim to remove whitespace 
+    if (categorya.trim() === '') {
+        alert('Please enter a category.');
+        // return;
     }
 
-    // display category
+
+    $.ajax({
+        url: "insertcategories.php",
+        method: "POST",
+        data: {
+
+            sendCategories: categorya
+
+        },
+        success: function(data, status) {
+
+            display();
+            // $("#addcategory")[0].reset();
+
+            // test button 
+            //  console.log(status);
+
+            $('#addcategory').val('');
+
+        }
+
+
+    });
+
+
+}
 </script>

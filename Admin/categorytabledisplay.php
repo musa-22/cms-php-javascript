@@ -18,7 +18,7 @@ if (isset($_POST['displayTableInfo'])) {
             <th scope="row">' . $number++ . '</th>
             <td>' . $icate . '</td>
             
-            <td> <a href="#">Delete</a></td>
+            <td> <a  href="" onclick="DeleteCategory(' . $id . ')">Delete</a></td>
             <td><a href="#">Update</a></td>
         </tr>';
       }
@@ -29,3 +29,8 @@ if (isset($_POST['displayTableInfo'])) {
 
 
 ?>
+
+
+<!--
+         <td> <a  href="categories.php?=' . $id . '" onclick="DeleteCategory(' . $id . ')">Delete</a></td>
+-->

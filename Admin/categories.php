@@ -62,71 +62,87 @@
 
 
 <script>
-// here help to display data of data and make it fix in the page 
-$(document).ready(function() {
+    $(document).ready(function() {
 
-    display();
-    document.getElementById("#addcategory").reset();
+        display();
 
-})
 
-// display category
+    })
 
-function display() {
-    var displaydata = "true";
-    $.ajax({
+    // display category
 
-        url: 'categorytabledisplay.php',
-        type: 'post',
-        data: {
+    function display() {
+        var displaydata = "true";
+        $.ajax({
 
-            displayTableInfo: displaydata
+            url: 'categorytabledisplay.php',
+            type: 'post',
+            data: {
 
-        },
-        success: function(data, status) {
-            $('#displaytabledata').html(data);
+                displayTableInfo: displaydata
+
+            },
+            success: function(data, status) {
+                $('#displaytabledata').html(data);
+            }
+
+
+        });
+    }
+
+    // add category
+    function addCategory() {
+        var categorya = $('#addcategory').val();
+
+        // using trim to remove whitespace 
+        if (categorya.trim() === '') {
+            alert('Please enter a category.');
+            // return;
         }
 
 
-    });
-}
+        $.ajax({
+            url: "insertcategories.php",
+            method: "POST",
+            data: {
+
+                sendCategories: categorya
+
+            },
+            success: function(data, status) {
+
+                display();
+                // $("#addcategory")[0].reset();
+
+                // test button 
+                //  console.log(status);
+
+                $('#addcategory').val('');
+
+            }
 
 
+        });
 
-// add category
-function addCategory() {
-    var categorya = $('#addcategory').val();
-
-    // using trim to remove whitespace 
-    if (categorya.trim() === '') {
-        alert('Please enter a category.');
-        // return;
     }
 
 
-    $.ajax({
-        url: "insertcategories.php",
-        method: "POST",
-        data: {
+    // delete function 
 
-            sendCategories: categorya
+    function DeleteCategory(delete_category_id) {
+        $.ajax({
 
-        },
-        success: function(data, status) {
+            url: "deletecategory.php",
+            type: "post",
+            data: {
+                id: delete_category_id
+            },
+            success: function(data, status) {
+                alert("Are you sure you want to delete this data")
+                display();
+            }
 
-            display();
-            // $("#addcategory")[0].reset();
+        })
 
-            // test button 
-            //  console.log(status);
-
-            $('#addcategory').val('');
-
-        }
-
-
-    });
-
-
-}
+    }
 </script>

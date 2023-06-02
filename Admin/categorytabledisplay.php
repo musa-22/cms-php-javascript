@@ -18,8 +18,8 @@ if (isset($_POST['displayTableInfo'])) {
             <th scope="row">' . $number++ . '</th>
             <td>' . $icate . '</td>
             
-            <td> <a  href="" onclick="DeleteCategory(' . $id . ')">Delete</a></td>
-            <td><a href="#">Update</a></td>
+            <td> <a class="btn btn-danger" onclick="DeleteCategory(' . $id . ')">Delete</a></td>
+            <td><a  onclick="GetCategory(' . $id . ')" >Update</a></td>
         </tr>';
       }
       echo $table;

@@ -17,6 +17,17 @@
                 <input type="text" class="form-control" id="addcategory">
 
                 <button type="button" class="btn btn-primary  my-2" onclick="addCategory()">Add-Category</button>
+
+
+            </div>
+
+            <div class="mb-3" id="hiddenData">
+                <label for="addcategory" class="form-label">Edit - Category</label>
+                <input type="text" class="form-control" id="updatecat">
+
+                <button type="button" class="btn btn-primary  my-2" onclick="updatedetails()">Edit-Category</button>
+                <input type="hidden" id="hi">
+
             </div>
 
 
@@ -62,87 +73,142 @@
 
 
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
 
-        display();
+    display();
 
+    $('#hiddenData').hide(); // Hide the field initially
+    $('#hiddenData button').click(function() {
+        $('#hiddenData').show(); // Show the field
+        $(this).hide(); // Hide the button
+    });
 
-    })
+})
 
-    // display category
+// display category
 
-    function display() {
-        var displaydata = "true";
-        $.ajax({
+function display() {
+    var displaydata = "true";
+    $.ajax({
 
-            url: 'categorytabledisplay.php',
-            type: 'post',
-            data: {
+        url: 'categorytabledisplay.php',
+        type: 'post',
+        data: {
 
-                displayTableInfo: displaydata
+            displayTableInfo: displaydata
 
-            },
-            success: function(data, status) {
-                $('#displaytabledata').html(data);
-            }
-
-
-        });
-    }
-
-    // add category
-    function addCategory() {
-        var categorya = $('#addcategory').val();
-
-        // using trim to remove whitespace 
-        if (categorya.trim() === '') {
-            alert('Please enter a category.');
-            // return;
+        },
+        success: function(data, status) {
+            $('#displaytabledata').html(data);
         }
 
 
-        $.ajax({
-            url: "insertcategories.php",
-            method: "POST",
-            data: {
+    });
+}
 
-                sendCategories: categorya
-
-            },
-            success: function(data, status) {
-
-                display();
-                // $("#addcategory")[0].reset();
-
-                // test button 
-                //  console.log(status);
-
-                $('#addcategory').val('');
-
-            }
+// update function
+$(document).ready(function() {
 
 
+});
+
+
+// add category
+function addCategory() {
+    var categorya = $('#addcategory').val();
+
+    // using trim to remove whitespace 
+    if (categorya.trim() === '') {
+        alert('Please enter a category.');
+        return;
+    }
+
+
+    $.ajax({
+        url: "insertcategories.php",
+        method: "POST",
+        data: {
+
+            sendCategories: categorya
+
+        },
+        success: function(data, status) {
+
+            display();
+            // $("#addcategory")[0].reset();
+
+            // test button 
+            //  console.log(status);
+
+            $('#addcategory').val('');
+
+        }
+
+
+    });
+
+}
+
+// delete function 
+
+function DeleteCategory(delete_category_id) {
+    $.ajax({
+
+        url: "deletecategory.php",
+        type: "post",
+        data: {
+            id: delete_category_id
+        },
+        success: function(data, status) {
+            //  alert("Are you sure you want to delete this data")
+            display();
+        }
+
+    });
+
+}
+
+// get category data to update...
+function GetCategory(update_id) {
+    // hiddenData
+    var up_id = $('#hiddenData').val(update_id);
+
+    //  up_id.is(':visible') ? up_id.hide() : up_id.show();
+    if (up_id.is(':visible')) {
+        up_id.hide();
+    } else {
+        up_id.show();
+    }
+    $.post("categoryupdate.php", {
+            up_id: update_id,
+        },
+        function(data, status) {
+
+            var resp = JSON.parse(data);
+            $('#updatecat').val(resp.categories);
         });
+}
 
-    }
+/// update the data  
+function updatedetails() {
+    var updatecat = $('#updatecat').val();
 
+    var hidden = $('#hiddenData').val();
 
-    // delete function 
+    $.ajax({
 
-    function DeleteCategory(delete_category_id) {
-        $.ajax({
+        url: "categoryupdate.php",
+        type: "post",
+        data: {
+            updatecat: updatecat,
+            hidden: hidden
+        },
+        success: function(data, status) {
+            alert("Are you sure you want to change it");
+            location.reload();
+        }
 
-            url: "deletecategory.php",
-            type: "post",
-            data: {
-                id: delete_category_id
-            },
-            success: function(data, status) {
-                alert("Are you sure you want to delete this data")
-                display();
-            }
+    });
 
-        })
-
-    }
+}
 </script>

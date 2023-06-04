@@ -1,10 +1,11 @@
-<?php include_once "database/db.php"
+<?php include_once "../database/db.php";
 ?>
 <?php
 //diplay categories table 
 
 //extract($_POST);
 if (isset($_POST['displayTableInfo'])) {
+      global $con;
 
       $table = "";
       $number = 1;

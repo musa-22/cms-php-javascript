@@ -1,4 +1,4 @@
-<?php include_once "database/db.php"
+<?php include_once "../database/db.php";
 ?>
 <?php
 //1- create logic to post data to db and,

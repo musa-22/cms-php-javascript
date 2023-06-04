@@ -73,137 +73,144 @@
 
 
 <script>
-    $(document).ready(function() {
+// here help to display data of data and make it fix in the page 
+$(document).ready(function() {
 
-        display();
+    display();
 
-        $('#hiddenData').hide(); // Hide the field initially
-        $('#hiddenData button').click(function() {
-            $('#hiddenData').show(); // Show the field
-            $(this).hide(); // Hide the button
-        });
+})
 
-    })
+$(document).ready(function() {
 
-    // display category
+    display();
 
-    function display() {
-        var displaydata = "true";
-        $.ajax({
+    $('#hiddenData').hide(); // Hide the field initially
+    $('#hiddenData button').click(function() {
+        $('#hiddenData').show(); // Show the field
+        $(this).hide(); // Hide the button
+    });
 
-            url: 'includes/categorytabledisplay.php',
-            type: 'post',
-            data: {
+})
 
-                displayTableInfo: displaydata
+// display category
 
-            },
-            success: function(data, status) {
-                $('#displaytabledata').html(data);
-            }
+function display() {
+    var displaydata = "true";
+    $.ajax({
 
+        url: 'includes/categorytabledisplay.php',
+        type: 'post',
+        data: {
 
-        });
-    }
+            displayTableInfo: displaydata
 
-
-
-    // add category
-    function addCategory() {
-        var categorya = $('#addcategory').val();
-
-        // using trim to remove whitespace 
-        if (categorya.trim() === '') {
-            alert('Please enter a category.');
-            return;
+        },
+        success: function(data, status) {
+            $('#displaytabledata').html(data);
         }
 
 
-        $.ajax({
-            url: "includes/insertcategories.php",
-            method: "POST",
-            data: {
-
-                sendCategories: categorya
-
-            },
-            success: function(data, status) {
-
-                display();
-                // $("#addcategory")[0].reset();
-
-                // test button 
-                //  console.log(status);
-
-                $('#addcategory').val('');
-
-            }
+    });
+}
 
 
-        });
 
+// add category
+function addCategory() {
+    var categorya = $('#addcategory').val();
+
+    // using trim to remove whitespace 
+    if (categorya.trim() === '') {
+        alert('Please enter a category.');
+        return;
     }
 
-    // delete function 
 
-    function DeleteCategory(delete_category_id) {
-        $.ajax({
+    $.ajax({
+        url: "includes/insertcategories.php",
+        method: "POST",
+        data: {
 
-            url: "includes/deletecategory.php",
-            type: "post",
-            data: {
-                id: delete_category_id
-            },
-            success: function(data, status) {
-                //  alert("Are you sure you want to delete this data")
-                display();
-            }
+            sendCategories: categorya
 
-        });
+        },
+        success: function(data, status) {
 
-    }
+            display();
+            // $("#addcategory")[0].reset();
 
-    // get category data to update...
-    function GetCategory(update_id) {
-        // hiddenData
-        var up_id = $('#hiddenData').val(update_id);
+            // test button 
+            //  console.log(status);
 
-        //  up_id.is(':visible') ? up_id.hide() : up_id.show();
-        if (up_id.is(':visible')) {
-            up_id.hide();
-        } else {
-            up_id.show();
+            $('#addcategory').val('');
+
         }
-        $.post("includes/categoryupdate.php", {
-                up_id: update_id,
-            },
-            function(data, status) {
 
-                var resp = JSON.parse(data);
-                $('#updatecat').val(resp.categories);
-            });
+
+    });
+
+}
+
+// delete function 
+
+function DeleteCategory(delete_category_id) {
+    $.ajax({
+
+        url: "includes/deletecategory.php",
+        type: "post",
+        data: {
+            id: delete_category_id
+        },
+        success: function(data, status) {
+            // alert("Are you sure you want to delete this data")
+            display();
+        }
+
+    });
+
+}
+
+// get category data to update...
+function GetCategory(update_id) {
+    // hiddenData
+    var up_id = $('#hiddenData').val(update_id);
+
+    //  up_id.is(':visible') ? up_id.hide() : up_id.show();
+    if (up_id.is(':visible')) {
+        up_id.hide();
+    } else {
+        up_id.show();
     }
+    $.post("includes/categoryupdate.php", {
+            up_id: update_id,
+        },
+        function(data, status) {
 
-    /// update the data  
-    function updatedetails() {
-        var updatecat = $('#updatecat').val();
-
-        var hidden = $('#hiddenData').val();
-
-        $.ajax({
-
-            url: "includes/categoryupdate.php",
-            type: "post",
-            data: {
-                updatecat: updatecat,
-                hidden: hidden
-            },
-            success: function(data, status) {
-                alert("Are you sure you want to change it");
-                location.reload();
-            }
-
+            var resp = JSON.parse(data);
+            $('#updatecat').val(resp.categories);
         });
+}
 
-    }
+/// update the data  
+function updatedetails() {
+    var updatecat = $('#updatecat').val();
+
+    var hidden = $('#hiddenData').val();
+
+    $.ajax({
+
+        url: "includes/categoryupdate.php",
+        type: "post",
+        data: {
+            updatecat: updatecat,
+            hidden: hidden
+        },
+        success: function(data, status) {
+            alert("Are you sure you want to change it");
+            location.reload();
+        }
+
+    });
+
+}
 </script>

@@ -81,7 +81,7 @@
 
         post_content === '' ? alert("Enter content") : post_content;
 
-        // Create a FormData object
+        // Create a FormData objects
         var formData = new FormData();
         formData.append('post_title', post_title);
         formData.append('post_image', post_image);

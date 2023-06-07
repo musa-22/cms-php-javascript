@@ -12,9 +12,17 @@
             <div class="dash-nav-dropdown">
                 <a href="#!" class="dash-nav-item dash-nav-dropdown-toggle">
                     <i class="fas fa-chart-bar"></i> Posts </a>
+
+                <div class="dash-nav-dropdown-menu">
+                    <a href="posts_display.php" class="dash-nav-dropdown-item">Viwe-Post</a>
+                </div>
+
                 <div class="dash-nav-dropdown-menu">
                     <a href="posts.php" class="dash-nav-dropdown-item">Add-Post</a>
                 </div>
+
+
+
             </div>
 
             <div class="dash-nav-dropdown ">

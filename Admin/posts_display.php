@@ -23,7 +23,7 @@
         <table class="table  table-bordered table-in-card">
             <thead>
                 <tr>
-                    <th scope="col">Id</th>
+                    <th scope="col">ID</th>
                     <th scope="col">Title</th>
                     <th class='d-none d-sm-table-cell' scope="col">Post_Category</th>
                     <th class='d-none d-sm-table-cell' scope="col">Image</th>
@@ -34,6 +34,8 @@
             </thead>
             <tbody>
                 <?php
+
+                $count = 0;
 
 
                 $sql = "SELECT * FROM posts";
@@ -64,13 +66,15 @@
 
                         echo  " <tr >";
 
+                        //echo " <th scope='row'> " . $count++ . " </th>"; its worked but for now just leave like this rn
+
                         echo " <th scope='row'> $psot_id </th>";
                         echo "<th> $post_title</th>";
                         echo  " <th class='d-none d-sm-table-cell'>$cat_title </th>";
-                        echo "<th class='d-none d-sm-table-cell'> <img src='./images/$post_image '  width= 100></th>";
+                        echo "<th class='d-none d-sm-table-cell'> <img src='./images/$post_image ' height= 60 width= 100></th>";
                         echo  "<th class='d-none d-sm-table-cell'> $post_date </th>";
                         echo  "<th class='d-none d-sm-table-cell'> Update </th>";
-                        echo  "<th  class='d-none d-sm-table-cell'><a href='posts_display.php?id=$psot_id'> Delete </a> </th>";
+                        echo  "<th  class='d-none d-sm-table-cell'> <a class='btn btn-danger' onclick='DeletePost( $psot_id)'> Delete</a></th>";
 
                         echo    "</tr>";
                     }
@@ -94,3 +98,26 @@
 
 
 <?php include_once "includes/footer.php"; ?>
+
+<script>
+// delete function 
+
+function DeletePost(psot_id) {
+
+    $.ajax({
+
+        url: "includes/post_delete.php",
+        type: "post",
+        data: {
+            id: psot_id
+        },
+        success: function(data, status) {
+            // alert("Are you sure you want to delete this data")
+
+            location.reload();
+        }
+
+    });
+
+}
+</script>

@@ -106,7 +106,7 @@
             formData.append('post_content', post_content);
 
             $.ajax({
-                url: "includes/addposts.php",
+                url: "includes/posts_post.php",
                 type: "post",
                 data: formData,
                 processData: false, // Prevent jQuery from processing the data

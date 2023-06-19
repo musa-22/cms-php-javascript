@@ -9,6 +9,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600|Open+Sans:400,600,700" rel="stylesheet">
     <link rel="stylesheet" href="css/spur.css">
+    <link rel="stylesheet" href="../css/spur.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
 
     <title>Spur - A Bootstrap Admin Template</title>

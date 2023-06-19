@@ -10,15 +10,15 @@
             <a href="index.html" class="dash-nav-item">
                 <i class="fas fa-home"></i> Dashboard </a>
             <div class="dash-nav-dropdown">
-                <a href="#!" class="dash-nav-item dash-nav-dropdown-toggle">
+                <a href="#" class="dash-nav-item dash-nav-dropdown-toggle">
                     <i class="fas fa-chart-bar"></i> Posts </a>
 
                 <div class="dash-nav-dropdown-menu">
-                    <a href="posts_display.php" class="dash-nav-dropdown-item">Viwe-Post</a>
+                    <a href="posts.php" class="dash-nav-dropdown-item">Viwe-Post</a>
                 </div>
 
                 <div class="dash-nav-dropdown-menu">
-                    <a href="posts.php" class="dash-nav-dropdown-item">Add-Post</a>
+                    <a href="post_add.php" class="dash-nav-dropdown-item">Add-Post</a>
                 </div>
 
 
@@ -49,8 +49,7 @@
                 <a href="#!" class="dash-nav-item dash-nav-dropdown-toggle">
                     <i class="fas fa-info"></i> About </a>
                 <div class="dash-nav-dropdown-menu">
-                    <a href="https://github.com/HackerThemes/spur-template" target="_blank"
-                        class="dash-nav-dropdown-item">GitHub</a>
+                    <a href="https://github.com/HackerThemes/spur-template" target="_blank" class="dash-nav-dropdown-item">GitHub</a>
                     <a href="http://hackerthemes.com" target="_blank" class="dash-nav-dropdown-item">HackerThemes</a>
                 </div>
             </div>
@@ -81,8 +80,7 @@
                     <i class="tools-item-count">4</i>
                 </a>
                 <div class="dropdown tools-item">
-                    <a href="#" class="" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
+                    <a href="#" class="" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-user"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">

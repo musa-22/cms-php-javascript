@@ -31,5 +31,4 @@ if (isset($post_title) && isset($post_image) && isset($post_content)) {
     mysqli_query($con, $sql);
 }
 
-
 ?>

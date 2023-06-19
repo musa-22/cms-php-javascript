@@ -82,9 +82,9 @@ function DeletePost(psot_id) {
             id: psot_id
         },
         success: function(data, status) {
-            // alert("Are you sure you want to delete this data")
+            alert("Are you sure you want to delete this data")
+            display();
 
-            location.reload();
         }
 
     });
